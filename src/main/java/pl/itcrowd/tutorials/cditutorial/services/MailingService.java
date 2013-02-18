@@ -1,6 +1,7 @@
 package pl.itcrowd.tutorials.cditutorial.services;
 
 import pl.itcrowd.tutorials.cditutorial.domain.User;
+import pl.itcrowd.tutorials.cditutorial.framework.Real;
 import pl.itcrowd.tutorials.cditutorial.managers.UserManager;
 
 import javax.ejb.Asynchronous;
@@ -19,7 +20,8 @@ public class MailingService {
 
     private static final Logger LOGGER = Logger.getLogger(MailingService.class.getCanonicalName());
 
-    @EJB
+    @Inject
+    @Real
     private Mailer mailer;
 
     @Inject
