@@ -3,12 +3,11 @@ package pl.itcrowd.tutorials.cditutorial.view;
 import pl.itcrowd.tutorials.cditutorial.domain.User;
 import pl.itcrowd.tutorials.cditutorial.managers.UserManager;
 import pl.itcrowd.tutorials.cditutorial.services.MailingService;
-import pl.itcrowd.tutorials.cditutorial.util.Gateway;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -19,28 +18,20 @@ import java.util.List;
 @ViewScoped
 public class UserView {
 
-    @ManagedProperty(value = "#{gateway}")
-    private Gateway gateway;
-
     @ManagedProperty(value = "#{userDetailView}")
     private UserDetailView userDetailView;
 
     private List<User> users;
 
+    @Inject
     private UserManager userManager;
 
+    @Inject
     private MailingService mailingService;
 
     private String mailTitle;
 
     private String mailContent;
-
-    @PostConstruct
-    private void onCreate()
-    {
-        userManager = gateway.getUserManager();
-        mailingService = gateway.getMailingService();
-    }
 
     public void selectAction(User user)
     {
@@ -58,16 +49,6 @@ public class UserView {
 //        if(users==null)
         users = userManager.getAllUsers();
         return users;
-    }
-
-    public Gateway getGateway()
-    {
-        return gateway;
-    }
-
-    public void setGateway(Gateway gateway)
-    {
-        this.gateway = gateway;
     }
 
     public UserDetailView getUserDetailView()

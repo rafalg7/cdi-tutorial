@@ -2,12 +2,10 @@ package pl.itcrowd.tutorials.cditutorial.view;
 
 import pl.itcrowd.tutorials.cditutorial.domain.User;
 import pl.itcrowd.tutorials.cditutorial.managers.UserManager;
-import pl.itcrowd.tutorials.cditutorial.util.Gateway;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 
 /**
  * User: Rafal Gielczowski
@@ -17,11 +15,9 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class UserDetailView {
 
-    @ManagedProperty(value = "#{gateway}")
-    private Gateway gateway;
-
     private User selectedUser;
 
+    @Inject
     private UserManager userManager;
 
     public void deleteAction(User user)
@@ -47,12 +43,6 @@ public class UserDetailView {
         this.selectedUser = new User();
     }
 
-    @PostConstruct
-    private void onCreate()
-    {
-        userManager = gateway.getUserManager();
-    }
-
     // -------------- getters & setters ------------------
 
     public User getSelectedUser()
@@ -63,15 +53,5 @@ public class UserDetailView {
     public void setSelectedUser(User selectedUser)
     {
         this.selectedUser = selectedUser;
-    }
-
-    public Gateway getGateway()
-    {
-        return gateway;
-    }
-
-    public void setGateway(Gateway gateway)
-    {
-        this.gateway = gateway;
     }
 }

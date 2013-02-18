@@ -3,10 +3,8 @@ package pl.itcrowd.tutorials.cditutorial.managers;
 import pl.itcrowd.tutorials.cditutorial.dao.UserRepository;
 import pl.itcrowd.tutorials.cditutorial.domain.User;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.inject.Inject;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,6 +17,7 @@ public class UserManager {
 
     private static final Logger LOGGER = Logger.getLogger(UserManager.class.getCanonicalName());
 
+    @Inject
     private UserRepository userRepository;
 
     public List<User> getAllUsers()
@@ -44,16 +43,5 @@ public class UserManager {
     public void saveUser(User user)
     {
         userRepository.saveUser(user);
-    }
-
-    @PostConstruct
-    private void onCreate()
-    {
-        try {
-            userRepository = (UserRepository) new InitialContext().lookup("java:global/cdi-tutorial/UserRepository");
-        } catch (NamingException e) {
-            LOGGER.info("Error lookup UserRepository:" + e.getLocalizedMessage());
-            throw new RuntimeException(e);
-        }
     }
 }
