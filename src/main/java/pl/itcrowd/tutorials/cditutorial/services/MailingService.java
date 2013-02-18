@@ -8,6 +8,7 @@ import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
  * Date: 2/18/13 Time: 2:04 PM
  */
 @Stateless
-public class MailingService {
+public class MailingService implements Serializable {
 
     private static final Logger LOGGER = Logger.getLogger(MailingService.class.getCanonicalName());
 

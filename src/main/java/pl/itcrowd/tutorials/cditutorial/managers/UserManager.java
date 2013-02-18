@@ -5,6 +5,7 @@ import pl.itcrowd.tutorials.cditutorial.domain.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
  * Date: 2/18/13 Time: 12:37 PM
  */
 @Stateless
-public class UserManager {
+public class UserManager implements Serializable {
 
     private static final Logger LOGGER = Logger.getLogger(UserManager.class.getCanonicalName());
 
