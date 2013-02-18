@@ -1,6 +1,7 @@
 package pl.itcrowd.tutorials.cditutorial.view;
 
 import pl.itcrowd.tutorials.cditutorial.domain.User;
+import pl.itcrowd.tutorials.cditutorial.framework.Logged;
 import pl.itcrowd.tutorials.cditutorial.framework.Selected;
 import pl.itcrowd.tutorials.cditutorial.managers.UserManager;
 
@@ -30,6 +31,7 @@ public class UserDetailView implements Serializable {
         this.selectedUser = user;
     }
 
+    @Logged
     public void deleteAction(User user)
     {
         if (selectedUser != null && selectedUser.equals(user)) {
