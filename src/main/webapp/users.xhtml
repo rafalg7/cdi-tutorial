@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+  Created by IntelliJ IDEA.
+  User: rafal
+  Date: 2/18/13
+  Time: 12:42 PM
+--><!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>User list</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:dataTable value="#{userView.users}" var="user" border="1">
+            <h:column>
+                <f:facet name="header">User id</f:facet>
+                #{user.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">User name</f:facet>
+                #{user.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">User email</f:facet>
+                #{user.email}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:commandButton value="Edit" action="#{userView.selectAction(user)}"/>
+                <h:commandButton value="Delete" action="#{userDetailView.deleteAction(user)}"/>
+            </h:column>
+
+        </h:dataTable>
+    </h:form>
+    <br/>
+    <h:form>
+        <h:panelGrid columns="3" id="userDetailsGrid">
+            <h:outputLabel for="userId" value="User ID"/>
+            <h:outputText id="userId" value="#{userDetailView.selectedUser.id}"/>
+            <h:message for="userId"/>
+
+            <h:outputLabel for="userName" value="User name"/>
+            <h:inputText id="userName" value="#{userDetailView.selectedUser.name}"/>
+            <h:message for="userName"/>
+
+            <h:outputLabel for="userEmail" value="User email"/>
+            <h:inputText id="userEmail" value="#{userDetailView.selectedUser.email}"/>
+            <h:message for="userEmail"/>
+
+            <h:commandButton value="Save" action="#{userDetailView.saveAction}"/>
+
+            <h:commandButton value="New" action="#{userDetailView.newAction}" immediate="true">
+                <f:ajax render="userDetailsGrid"/>
+            </h:commandButton>
+
+            <h:commandButton value="Cancel" action="#{userDetailView.cancelAction}" immediate="true">
+                <f:ajax render="userDetailsGrid"/>
+            </h:commandButton>
+        </h:panelGrid>
+    </h:form>
+    <br/>
+
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel for="mailTitle" value="Mail title:"/>
+            <h:inputText id="mailTitle" value="#{userView.mailTitle}"/>
+            <h:message for="mailTitle"/>
+
+            <h:outputLabel for="mailContent" value="Mail content:"/>
+            <h:inputText id="mailContent" value="#{userView.mailContent}"/>
+            <h:message for="mailContent"/>
+
+            <h:commandButton value="Send mail to users" action="#{userView.sendMailingAction}"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+
+</html>
