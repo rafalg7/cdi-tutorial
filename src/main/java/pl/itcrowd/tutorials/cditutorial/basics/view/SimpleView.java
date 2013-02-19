@@ -1,6 +1,7 @@
 package pl.itcrowd.tutorials.cditutorial.basics.view;
 
 import pl.itcrowd.tutorials.cditutorial.basics.annotations.Enhanced;
+import pl.itcrowd.tutorials.cditutorial.basics.example.ExampleInterface;
 import pl.itcrowd.tutorials.cditutorial.basics.services.BusinessGreeter;
 import pl.itcrowd.tutorials.cditutorial.basics.services.MyService;
 import pl.itcrowd.tutorials.cditutorial.basics.services.SimpleBean;
@@ -39,8 +40,11 @@ public class SimpleView implements Serializable {
     Event<String> stringEvent;
     private String userInput;
 
+    @Inject
+    private ExampleInterface exampleInterface;
+
     public String getInfo(){
-        return "Injected bean name: "+simpleBean+", name returned directly from bean:"+simpleBean.getName()+", "+new Date();
+        return "Injected bean name: "+exampleInterface;
     }
 
     @Produces
