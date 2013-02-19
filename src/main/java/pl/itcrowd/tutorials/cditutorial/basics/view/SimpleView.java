@@ -1,22 +1,20 @@
 package pl.itcrowd.tutorials.cditutorial.basics.view;
 
 import pl.itcrowd.tutorials.cditutorial.basics.annotations.Enhanced;
+import pl.itcrowd.tutorials.cditutorial.basics.annotations.Normal;
 import pl.itcrowd.tutorials.cditutorial.basics.example.ExampleInterface;
 import pl.itcrowd.tutorials.cditutorial.basics.services.BusinessGreeter;
 import pl.itcrowd.tutorials.cditutorial.basics.services.MyService;
 import pl.itcrowd.tutorials.cditutorial.basics.services.SimpleBean;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Event;
+import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
-import javax.enterprise.inject.Produces;
+import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -43,22 +41,30 @@ public class SimpleView implements Serializable {
     Event<String> stringEvent;
 
     private String userInput;
-    private String instanceName;
+
+    private String enhancedInstanceName;
+
+    private String normalInstanceName;
 
     @Inject
     private ExampleInterface exampleInterface;
 
-    public String getInfo(){
-        return "Injected bean name: "+exampleInterface;
+    public String getInfo()
+    {
+        return "Injected bean name: " + exampleInterface;
     }
 
     @Inject
-    @Enhanced
+    @Any
     Instance<BusinessGreeter> businessGreeterSource;
 
-    public void buttonAction(){
+    public void buttonAction()
+    {
         stringEvent.fire(userInput);
-        instanceName = businessGreeterSource.get().toString();
+        enhancedInstanceName = businessGreeterSource.select(new AnnotationLiteral<Enhanced>() {
+        }).get().toString();
+        normalInstanceName = businessGreeterSource.select(new AnnotationLiteral<Normal>() {
+        }).get().toString();
     }
 
     public String getUserInput()
@@ -71,8 +77,13 @@ public class SimpleView implements Serializable {
         this.userInput = userInput;
     }
 
-    public String getInstanceName()
+    public String getEnhancedInstanceName()
     {
-        return instanceName;
+        return enhancedInstanceName;
+    }
+
+    public String getNormalInstanceName()
+    {
+        return normalInstanceName;
     }
 }

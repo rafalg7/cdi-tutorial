@@ -22,7 +22,8 @@
 
     <h:form>
         <h:panelGrid columns="1">
-            <h:outputText value="InstanceName: #{simpleView.instanceName}"/>
+            <h:outputText value="@Enhanced InstanceName: #{simpleView.enhancedInstanceName}"/>
+            <h:outputText value="@Normal InstanceName: #{simpleView.normalInstanceName}"/>
             <h:inputText value="#{simpleView.userInput}" required="true"/>
             <h:commandButton value="Send text!" action="#{simpleView.buttonAction}"/>
         </h:panelGrid>
