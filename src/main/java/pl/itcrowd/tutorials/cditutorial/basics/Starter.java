@@ -23,14 +23,14 @@ public class Starter {
 
     private BusinessGreeter businessGreeter;
 
-    @Inject
-    public Starter(@Enhanced BusinessGreeter businessGreeter)
-    {
-        this.businessGreeter = businessGreeter;
-    }
-
     @PostConstruct
     private void onCreate(){
         LOGGER.info("FROM "+businessGreeter+": "+businessGreeter.greeter());
+    }
+
+    @Inject
+    public void setBusinessGreeter(@Enhanced BusinessGreeter businessGreeter)
+    {
+        this.businessGreeter = businessGreeter;
     }
 }
