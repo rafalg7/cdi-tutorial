@@ -14,7 +14,11 @@
 </h:head>
 
 <h:body>
-    #{simpleView.info}
+    <h:dataTable value="#{greetings}" var="greeting">
+        <h:column>
+            #{greeting}
+        </h:column>
+    </h:dataTable>
 </h:body>
 
 </html>
