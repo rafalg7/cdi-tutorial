@@ -21,13 +21,16 @@ public class Starter {
 
     private final static Logger LOGGER = Logger.getLogger(Starter.class.getCanonicalName());
 
+    private BusinessGreeter businessGreeter;
+
     @Inject
-    @Enhanced
-    private BusinessGreeter businessGreeter; //this is interface! :)
+    public Starter(@Enhanced BusinessGreeter businessGreeter)
+    {
+        this.businessGreeter = businessGreeter;
+    }
 
     @PostConstruct
     private void onCreate(){
-        //but there we have concrete implementation
         LOGGER.info("FROM "+businessGreeter+": "+businessGreeter.greeter());
     }
 }
