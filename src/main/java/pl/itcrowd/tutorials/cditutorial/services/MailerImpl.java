@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  * User: Rafal Gielczowski
  * Date: 2/18/13 Time: 1:58 PM
  */
-@Real
+
 public class MailerImpl implements Mailer {
 
     private static final Logger LOGGER = Logger.getLogger(MailerImpl.class.getCanonicalName());

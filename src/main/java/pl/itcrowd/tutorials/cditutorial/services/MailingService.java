@@ -1,6 +1,7 @@
 package pl.itcrowd.tutorials.cditutorial.services;
 
 import pl.itcrowd.tutorials.cditutorial.domain.User;
+import pl.itcrowd.tutorials.cditutorial.framework.Dummy;
 import pl.itcrowd.tutorials.cditutorial.framework.Real;
 import pl.itcrowd.tutorials.cditutorial.managers.UserManager;
 
@@ -22,7 +23,6 @@ public class MailingService implements Serializable {
     private static final Logger LOGGER = Logger.getLogger(MailingService.class.getCanonicalName());
 
     @Inject
-    @Real
     private Mailer mailer;
 
     @Inject
