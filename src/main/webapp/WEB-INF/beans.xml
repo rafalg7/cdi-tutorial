@@ -4,8 +4,12 @@
         <class>pl.itcrowd.tutorials.cditutorial.util.LoggerInterceptor</class>
     </interceptors>
 
-    <alternatives>
-        <class>pl.itcrowd.tutorials.cditutorial.services.DummyMailerImpl</class>
-    </alternatives>
+    <!--<alternatives>-->
+        <!--<class>pl.itcrowd.tutorials.cditutorial.services.DummyMailerImpl</class>-->
+    <!--</alternatives>-->
+
+    <decorators>
+        <class>pl.itcrowd.tutorials.cditutorial.util.MailerDecorator</class>
+    </decorators>
 
 </beans>
