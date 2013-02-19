@@ -3,6 +3,7 @@ package pl.itcrowd.tutorials.cditutorial.basics;
 import pl.itcrowd.tutorials.cditutorial.basics.annotations.Enhanced;
 import pl.itcrowd.tutorials.cditutorial.basics.services.BusinessGreeter;
 import pl.itcrowd.tutorials.cditutorial.basics.services.MyService;
+import pl.itcrowd.tutorials.cditutorial.basics.services.SimpleBean;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -21,16 +22,9 @@ public class Starter {
 
     private final static Logger LOGGER = Logger.getLogger(Starter.class.getCanonicalName());
 
-    private BusinessGreeter businessGreeter;
-
     @PostConstruct
     private void onCreate(){
-        LOGGER.info("FROM "+businessGreeter+": "+businessGreeter.greeter());
+//        LOGGER.info("Injected bean name: "+simpleBean.toString()+", name returned directly from bean:"+simpleBean.getName());
     }
 
-    @Inject
-    public void setBusinessGreeter(@Enhanced BusinessGreeter businessGreeter)
-    {
-        this.businessGreeter = businessGreeter;
-    }
 }
