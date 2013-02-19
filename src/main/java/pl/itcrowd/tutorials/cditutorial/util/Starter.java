@@ -2,6 +2,7 @@ package pl.itcrowd.tutorials.cditutorial.util;
 
 import pl.itcrowd.tutorials.cditutorial.dao.UserRepository;
 import pl.itcrowd.tutorials.cditutorial.domain.User;
+import pl.itcrowd.tutorials.cditutorial.domain.UserRoleEnum;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -30,5 +31,6 @@ public class Starter {
         userRepository.saveUser(new User("Mark", "mark@example.com"));
         userRepository.saveUser(new User("Joanna", "joanna@example.com"));
         userRepository.saveUser(new User("Markus", "markus@example.com"));
+        userRepository.saveUser(new User("Thomas", "admin@example.com", UserRoleEnum.ADMIN));
     }
 }

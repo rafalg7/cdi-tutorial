@@ -32,6 +32,11 @@
             </h:column>
 
             <h:column>
+                <f:facet name="header">User role</f:facet>
+                #{user.userRole}
+            </h:column>
+
+            <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:commandButton value="Edit" action="#{userView.selectAction(user)}"/>
                 <h:commandButton value="Delete" action="#{userDetailView.deleteAction(user)}"/>

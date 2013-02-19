@@ -25,6 +25,9 @@ public class User implements Serializable {
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "ROLE")
+    private UserRoleEnum userRole;
+
     public User()
     {
     }
@@ -33,6 +36,13 @@ public class User implements Serializable {
     {
         this.name = name;
         this.email = email;
+        this.userRole = UserRoleEnum.CLIENT;
+    }
+
+    public User(String name, String email, UserRoleEnum role){
+        this.name = name;
+        this.email = email;
+        this.userRole = role;
     }
 
     public Long getId()
@@ -65,6 +75,16 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public UserRoleEnum getUserRole()
+    {
+        return userRole;
+    }
+
+    public void setUserRole(UserRoleEnum userRole)
+    {
+        this.userRole = userRole;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -86,6 +106,9 @@ public class User implements Serializable {
         if (name != null ? !name.equals(user.name) : user.name != null) {
             return false;
         }
+        if (userRole != user.userRole) {
+            return false;
+        }
 
         return true;
     }
@@ -96,6 +119,7 @@ public class User implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (userRole != null ? userRole.hashCode() : 0);
         return result;
     }
 
@@ -106,6 +130,7 @@ public class User implements Serializable {
             "id=" + id +
             ", name='" + name + '\'' +
             ", email='" + email + '\'' +
+            ", userRole=" + userRole +
             '}';
     }
 }
