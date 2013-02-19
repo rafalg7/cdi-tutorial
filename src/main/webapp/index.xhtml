@@ -21,8 +21,11 @@
     </h:dataTable>
 
     <h:form>
-        <h:inputText value="#{simpleView.userInput}" required="true"/>
-        <h:commandButton value="Send text!" action="#{simpleView.buttonAction}"/>
+        <h:panelGrid columns="1">
+            <h:outputText value="InstanceName: #{simpleView.instanceName}"/>
+            <h:inputText value="#{simpleView.userInput}" required="true"/>
+            <h:commandButton value="Send text!" action="#{simpleView.buttonAction}"/>
+        </h:panelGrid>
     </h:form>
 </h:body>
 

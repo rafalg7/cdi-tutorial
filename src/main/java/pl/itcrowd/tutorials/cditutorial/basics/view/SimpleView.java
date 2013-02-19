@@ -9,6 +9,7 @@ import pl.itcrowd.tutorials.cditutorial.basics.services.SimpleBean;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Event;
+import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,6 +27,8 @@ import java.util.logging.Logger;
 @SessionScoped
 public class SimpleView implements Serializable {
 
+    private static final Logger LOGGER = Logger.getLogger(SimpleView.class.toString());
+
     @Inject
     private SimpleBean simpleBean;
 
@@ -38,7 +41,9 @@ public class SimpleView implements Serializable {
 
     @Inject
     Event<String> stringEvent;
+
     private String userInput;
+    private String instanceName;
 
     @Inject
     private ExampleInterface exampleInterface;
@@ -47,17 +52,13 @@ public class SimpleView implements Serializable {
         return "Injected bean name: "+exampleInterface;
     }
 
-    @Produces
-    @Named
-    public List<String> getGreetings(){
-        List<String> greetings = new ArrayList<String>();
-        greetings.add(businessGreeter.greeter());
-        greetings.add(myService.greeter());
-        return greetings;
-    }
+    @Inject
+    @Enhanced
+    Instance<BusinessGreeter> businessGreeterSource;
 
     public void buttonAction(){
         stringEvent.fire(userInput);
+        instanceName = businessGreeterSource.get().toString();
     }
 
     public String getUserInput()
@@ -68,5 +69,10 @@ public class SimpleView implements Serializable {
     public void setUserInput(String userInput)
     {
         this.userInput = userInput;
+    }
+
+    public String getInstanceName()
+    {
+        return instanceName;
     }
 }
