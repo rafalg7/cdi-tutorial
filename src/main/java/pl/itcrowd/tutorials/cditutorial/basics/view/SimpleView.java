@@ -7,6 +7,7 @@ import pl.itcrowd.tutorials.cditutorial.basics.services.SimpleBean;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.event.Event;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,6 +35,10 @@ public class SimpleView implements Serializable {
     @Inject
     private MyService myService;
 
+    @Inject
+    Event<String> stringEvent;
+    private String userInput;
+
     public String getInfo(){
         return "Injected bean name: "+simpleBean+", name returned directly from bean:"+simpleBean.getName()+", "+new Date();
     }
@@ -47,4 +52,17 @@ public class SimpleView implements Serializable {
         return greetings;
     }
 
+    public void buttonAction(){
+        stringEvent.fire(userInput);
+    }
+
+    public String getUserInput()
+    {
+        return userInput;
+    }
+
+    public void setUserInput(String userInput)
+    {
+        this.userInput = userInput;
+    }
 }

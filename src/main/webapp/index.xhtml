@@ -19,6 +19,11 @@
             #{greeting}
         </h:column>
     </h:dataTable>
+
+    <h:form>
+        <h:inputText value="#{simpleView.userInput}" required="true"/>
+        <h:commandButton value="Send text!" action="#{simpleView.buttonAction}"/>
+    </h:form>
 </h:body>
 
 </html>
