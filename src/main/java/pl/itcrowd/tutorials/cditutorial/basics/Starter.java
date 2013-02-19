@@ -1,5 +1,6 @@
 package pl.itcrowd.tutorials.cditutorial.basics;
 
+import pl.itcrowd.tutorials.cditutorial.basics.services.BusinessGreeter;
 import pl.itcrowd.tutorials.cditutorial.basics.services.MyService;
 
 import javax.annotation.PostConstruct;
@@ -20,10 +21,11 @@ public class Starter {
     private final static Logger LOGGER = Logger.getLogger(Starter.class.getCanonicalName());
 
     @Inject
-    private MyService myService;
+    private BusinessGreeter businessGreeter; //this is interface! :)
 
     @PostConstruct
     private void onCreate(){
-        LOGGER.info("FROM MY SERVICE: "+myService.greeter());
+        //but there we have concrete implementation
+        LOGGER.info("FROM BusinessGreeterImpl "+businessGreeter+": "+businessGreeter.greeter());
     }
 }
